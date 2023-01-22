@@ -8,19 +8,9 @@ chords = data['chords'].values
 ngrams = zip(*[chords[i:] for i in range(n)])
 bigrams = [" ".join(ngram) for ngram in ngrams]
 
-# open the file in read mode and save chords into a list
-filename = open('chords.txt', 'r')
-data = filename.read()
-#need bigrams in format of list
-
-n = 2
-chords = data['chords'].values
-ngrams = zip(*[chords[i:] for i in range(n)])
-bigrams = [" ".join(ngram) for ngram in ngrams]
-
 def predict_next_state(chord:str, data:list=bigrams):
     """Predict next chord based on current state."""
-    # create list of bigrams which stats with current chord
+    # create list of bigrams which starts with current chord
     bigrams_with_current_chord = [bigram for bigram in bigrams if bigram.split(' ')[0]==chord]
     # count appearance of each bigram
     count_appearance = dict(Counter(bigrams_with_current_chord))
